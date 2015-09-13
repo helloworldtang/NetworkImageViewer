@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private static final int URL_NOT_EMPTY = 0;
     private EditText etUrl;
     private ImageView ivDisplay;
@@ -37,11 +37,19 @@ public class MainActivity extends AppCompatActivity {
                     ivDisplay.setImageBitmap((Bitmap) msg.obj);
                     break;
                 default:
+                    ivDisplay.setImageResource(R.drawable.github404);
                     Toast.makeText(getApplicationContext(), (CharSequence) msg.obj, Toast.LENGTH_SHORT).show();
                     break;
             }
         }
     };
+
+    public static void generateMessageAndHandle(Handler handler, int what, Object errorInfo) {
+        Message msg = Message.obtain();
+        msg.what = what;
+        msg.obj = errorInfo;
+        handler.sendMessage(msg);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
         etUrl = (EditText) findViewById(R.id.etUrl);
         ivDisplay = (ImageView) findViewById(R.id.ivDisplay);
     }
-
 
     public void navigateClickHandler(View view) {
         String url = etUrl.getText().toString().trim();
@@ -65,22 +72,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
-    public static void generateMessageAndHandle(Handler handler, int what, Object errorInfo) {
-        Message msg = Message.obtain();
-        msg.what = what;
-        msg.obj = errorInfo;
-        handler.sendMessage(msg);
-    }
 }
 
 class DownloadImageTask implements Runnable {
 
-    private static final String TAG = DownloadImageTask.class.getName();
     public static final int SUCCESS = 1;
     public static final int URL_ERROR = 2;
     public static final int IO_ERROR = 3;
     public static final int RESPONSE_CODE_ERROR = 4;
+    private static final String TAG = DownloadImageTask.class.getSimpleName();
     private String url;
     private Handler handler;
 
