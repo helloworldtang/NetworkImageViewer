@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">NetworkImageViewer</string>
 
-    <string name="labelInputUrl">请输入需要显示的图片地址</string>
+    <string name="labelInputUrl">请输入需要显示的图片地址:</string>
     <string name="action_settings">Settings</string>
     <string name="hintInputUrl">请输入图片的URL</string>
     <string name="navigate">Navigate</string>
-    <string name="demoUrl">http://images2015.cnblogs.com/blog/280044/201509/280044-20150912133905262-1010587656.jpg</string>
+    <string name="defaultUrl">http://images2015.cnblogs.com/blog/280044/201509/280044-20150912133905262-1010587656.jpg</string>
 </resources>

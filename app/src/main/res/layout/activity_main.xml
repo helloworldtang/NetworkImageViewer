@@ -15,7 +15,7 @@
         android:text="@string/labelInputUrl" />
     <EditText
         android:id="@+id/etUrl"
-        android:text="@string/demoUrl"
+        android:text="@string/defaultUrl"
         android:inputType="textUri"
         android:hint="@string/hintInputUrl"
         android:layout_width="match_parent"

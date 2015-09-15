@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
@@ -67,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
             Log.w(TAG, notEmpty);
             generateMessageAndHandle(handler, URL_NOT_EMPTY, notEmpty);
         } else {
-            Executor executor = Executors.newCachedThreadPool();
-            executor.execute(new DownloadImageTask(url, handler));
+            ExecutorService executorService = Executors.newCachedThreadPool();
+            executorService.execute(new DownloadImageTask(url, handler));
+            executorService.shutdown();
         }
 
     }
